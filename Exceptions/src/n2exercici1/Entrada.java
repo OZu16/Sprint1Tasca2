@@ -165,11 +165,12 @@ public class Entrada {
 	
 	public static String readString(String messageBoolean) throws Exception{
 		
-			String entryUser = "";
+			String stringUser = "";
 			
-			entryUser = sc.nextLine();
+			System.out.println(messageBoolean);
+			stringUser = sc.nextLine();
 			
-			if(entryUser.length() == 2) {
+			if(stringUser.length() == 2) {
 				System.out.println("ta bien");
 				
 			}else {
@@ -178,7 +179,7 @@ public class Entrada {
 			
 			
 		
-		return "";
+		return stringUser;
 	}
 
 	public static boolean readYesNo(String messageBoolean) {
@@ -208,10 +209,9 @@ public class Entrada {
 				
 			}catch(Exception e) {
 				System.out.println("error de format");
-				//sc.nextLine();
 			}
 			
-			//sc.nextLine();
+
 			
 		}while(invalidEntryUser);
 
