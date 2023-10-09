@@ -17,13 +17,15 @@ public class Entrada {
 		String messageString = "introdueix un String";
 		String messageBoolean = "introdueix un boolean (s = true // n = false)";
 		
-		readByte(messageByte);
-		readInt(messageInt);
-		readFloat(messageFloat);
-		readDouble(messageDouble);
-		readChar(messageChar);
-		readString(messageString);
-		readYesNo(messageBoolean);
+		byte byteAnswer = readByte(messageByte);
+		int intAnswer = readInt(messageInt);
+		float floatAnswer = readFloat(messageFloat);
+		double doubleAnswer = readDouble(messageDouble);
+		char charAnswer = readChar(messageChar);
+		String stringAnswer = readString(messageString);
+		boolean booleanAnswer = readYesNo(messageBoolean);
+		
+		printAll(byteAnswer, intAnswer, floatAnswer, doubleAnswer, charAnswer, stringAnswer, booleanAnswer);
 
 	}
 	
@@ -131,53 +133,56 @@ public class Entrada {
 		return doubleUser;	
 	}
 	
-	public static char readChar(String missatgeChar) {
+	public static char readChar(String messageChar) {
 		
 		char charUser = ' ';
 		String entryUser = "";
 		boolean invalidEntryUser = true;
 		
 		do {
-			try {
-				System.out.println(missatgeChar);
-				//sc.nextLine();
-				entryUser = sc.nextLine();
-				
-				
-				if(entryUser.length() == 1) {
-					invalidEntryUser = false;
-					charUser = entryUser.charAt(0);
-				}else {
-					charUser = (Character) null;;
-				}
-				
-			}catch(Exception e) {
-				System.out.println("error de format");
-				//sc.nextLine();
-			}
 			
-			//sc.nextLine();
+			System.out.println(messageChar);
+			entryUser = sc.nextLine();
+			
+			if(entryUser.length() != 1) {	
+				try {
+					throw new Exception("error de format");
+				
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				charUser = entryUser.charAt(0);
+				invalidEntryUser = false;
+			}
+	
 			
 		}while(invalidEntryUser);
-
+		
 	        return charUser;
 	}
 	
-	public static String readString(String messageBoolean) throws Exception{
+	public static String readString(String messageString){
 		
 			String stringUser = "";
+			boolean invalidEntryUser = true;
 			
-			System.out.println(messageBoolean);
-			stringUser = sc.nextLine();
-			
-			if(stringUser.length() == 2) {
-				System.out.println("ta bien");
+			do {
+				System.out.println(messageString);
+				stringUser = sc.nextLine();
 				
-			}else {
-				throw new Exception("mu mal");
-			}
+				if(stringUser.length() > 10) {	
+					try {
+						throw new Exception("error de format");
+					
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+				}else {
+					invalidEntryUser = false;
+				}
 			
-			
+			}while(invalidEntryUser);
 		
 		return stringUser;
 	}
@@ -188,38 +193,48 @@ public class Entrada {
 		String entryUser = "";
 		boolean booleanUser = true;
 		boolean invalidEntryUser = true;
-				
+		
 		do {
-			try {
-				System.out.println(messageBoolean);
-				//sc.nextLine();
-				entryUser = sc.nextLine();
-				
-				
+			
+			System.out.println(messageBoolean);
+			entryUser = sc.nextLine();
+
 				if(entryUser.equals("s") || entryUser.equals("n")) {
 					invalidEntryUser = false;
-					if(entryUser.equals("n")) {
-						booleanUser = false;
-					}
 					
 				}else {
-					entryUser = null;
+					try {
+						throw new Exception("error de format");
+					
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+					
 				}
 				
-				
-			}catch(Exception e) {
-				System.out.println("error de format");
-			}
-			
-
-			
 		}while(invalidEntryUser);
-
+		
+		if(entryUser.equals("n")) {
+			booleanUser = false;
+		}
+		
 	    return booleanUser;
 		
 
 	}
 
-	
+	public static void printAll(byte byteAnswer, int intAnswer, float floatAnswer, double doubleAnswer, char charAnswer, String stringAnswer, boolean booleanAnswer) {
+		
+		System.out.println("\nDADES INTRODUÏDES"
+				+ "\nbyte: " + byteAnswer
+				+ "\nint: " + intAnswer
+				+ "\nfloat: " + floatAnswer
+				+ "\ndouble: " + doubleAnswer
+				+ "\nchar: " + charAnswer
+				+ "\nstring: " + stringAnswer
+				+ "\nboolean: " + booleanAnswer);
+		
+		
+	}
 
 }
