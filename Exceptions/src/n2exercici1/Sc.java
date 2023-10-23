@@ -3,33 +3,11 @@ package n2exercici1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Entrada {
-
+public class Sc {
+	
 	static Scanner sc = new Scanner(System.in);
 	
-	public static void main (String[] args) throws Exception{
-		
-		String messageByte = "Introduex un byte";
-		String messageInt = "introdueix un int";
-		String messageFloat = "introdueix un float";
-		String messageDouble = "introdueix un double";
-		String messageChar = "introdueix un character";
-		String messageString = "introdueix un String";
-		String messageBoolean = "introdueix un boolean (s = true // n = false)";
-		
-		byte byteAnswer = readByte(messageByte);
-		int intAnswer = readInt(messageInt);
-		float floatAnswer = readFloat(messageFloat);
-		double doubleAnswer = readDouble(messageDouble);
-		char charAnswer = readChar(messageChar);
-		String stringAnswer = readString(messageString);
-		boolean booleanAnswer = readYesNo(messageBoolean);
-		
-		printAll(byteAnswer, intAnswer, floatAnswer, doubleAnswer, charAnswer, stringAnswer, booleanAnswer);
-
-	}
-	
-	public static byte readByte(String missatgeEdat){
+public static byte readByte(String missatgeEdat){
 		
 		byte byteUser = 0;
 		boolean invalidEntryUser = false;
