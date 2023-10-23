@@ -10,7 +10,7 @@ public class Sc {
 public static byte readByte(String missatgeEdat){
 		
 		byte byteUser = 0;
-		boolean invalidEntryUser = false;
+		boolean invalidEntryUser = true;
 		
 		do {
 			
@@ -22,7 +22,7 @@ public static byte readByte(String missatgeEdat){
 				
 			}catch(InputMismatchException  e) {
 				System.out.println("error de format");
-				invalidEntryUser = true;
+				
 			}
 			
 			sc.nextLine();
@@ -36,7 +36,7 @@ public static byte readByte(String missatgeEdat){
 	public static int readInt(String missatgeInt) {
 		
 		int intUser = 0;
-		boolean invalidEntryUser = false;
+		boolean invalidEntryUser = true;
 				
 			do {
 				
@@ -48,7 +48,7 @@ public static byte readByte(String missatgeEdat){
 					
 				}catch(InputMismatchException  e) {
 					System.out.println("error de format");
-					invalidEntryUser = true;
+					
 						
 				}
 				
@@ -62,7 +62,7 @@ public static byte readByte(String missatgeEdat){
 	public static float readFloat(String missatgeFloat) {
 		
 		float floatUser = 0f;
-		boolean invalidEntryUser = false;
+		boolean invalidEntryUser = true;
 
 		
 		do {
@@ -75,7 +75,7 @@ public static byte readByte(String missatgeEdat){
 				
 			}catch(InputMismatchException  e) {
 				System.out.println("error de format");
-				invalidEntryUser = true;
+				
 				
 			}
 			
@@ -89,7 +89,7 @@ public static byte readByte(String missatgeEdat){
 	public static double readDouble(String missatgeDouble) {
 		
 	double doubleUser = 0;
-	boolean invalidEntryUser = false;
+	boolean invalidEntryUser = true;
 
 		do {
 			
@@ -101,7 +101,7 @@ public static byte readByte(String missatgeEdat){
 				
 			}catch(InputMismatchException  e) {
 				System.out.println("error de format");
-				invalidEntryUser = true;
+				
 			}
 			
 			sc.nextLine();
@@ -111,92 +111,57 @@ public static byte readByte(String missatgeEdat){
 		return doubleUser;	
 	}
 	
-	public static char readChar(String messageChar) {
+	public static char readChar(String messageChar) throws Exception {
 		
 		char charUser = ' ';
 		String entryUser = "";
-		boolean invalidEntryUser = true;
 		
-		do {
-			
 			System.out.println(messageChar);
 			entryUser = sc.nextLine();
 			
-			if(entryUser.length() != 1) {	
-				try {
-					throw new Exception("error de format");
-				
-				}catch(Exception e) {
-					e.printStackTrace();
-				}
-			}else {
+			if(entryUser.length() == 1) {	
 				charUser = entryUser.charAt(0);
-				invalidEntryUser = false;
+				 return charUser;
+			}else {
+				
+				throw new Exception("error de format");
 			}
-	
-			
-		}while(invalidEntryUser);
-		
-	        return charUser;
+		    
 	}
 	
-	public static String readString(String messageString){
+	public static String readString(String messageString) throws Exception{
 		
 			String stringUser = "";
-			boolean invalidEntryUser = true;
 			
-			do {
 				System.out.println(messageString);
 				stringUser = sc.nextLine();
 				
-				if(stringUser.length() > 10) {	
-					try {
-						throw new Exception("error de format");
-					
-					}catch(Exception e) {
-						e.printStackTrace();
-					}
+				if(stringUser.length() < 10) {	
+					return stringUser;
 				}else {
-					invalidEntryUser = false;
+					throw new Exception("error de format");
 				}
-			
-			}while(invalidEntryUser);
 		
-		return stringUser;
 	}
 
-	public static boolean readYesNo(String messageBoolean) {
+	public static boolean readYesNo(String messageBoolean) throws Exception{
 		
 		
 		String entryUser = "";
 		boolean booleanUser = true;
-		boolean invalidEntryUser = true;
-		
-		do {
 			
-			System.out.println(messageBoolean);
-			entryUser = sc.nextLine();
+		System.out.println(messageBoolean);
+		entryUser = sc.nextLine();
 
-				if(entryUser.equals("s") || entryUser.equals("n")) {
-					invalidEntryUser = false;
-					
-				}else {
-					try {
-						throw new Exception("error de format");
-					
-					}catch(Exception e) {
-						e.printStackTrace();
-					}
-					
-				}
-				
-		}while(invalidEntryUser);
-		
-		if(entryUser.equals("n")) {
+		if(entryUser.equals("s")) {
+			booleanUser = true;
+			return booleanUser;
+		}else if(entryUser.equals("n")) {
 			booleanUser = false;
-		}
-		
-	    return booleanUser;
+			return booleanUser;
+		}else {
+			throw new Exception("error de format");
+			}	
 		
 
 	}

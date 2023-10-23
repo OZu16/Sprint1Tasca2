@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MainClass {
 
-	public static void main(String[] args) throws VendaBuidaException {
+	public static void main(String[] args) {
 
 		
 		Venda venda1 = new Venda(null);
@@ -14,11 +14,19 @@ public class MainClass {
 		venda1.getTotalProductes().add(new Producte("b", 6.2f));
 		venda1.getTotalProductes().add(new Producte("c", 3.1f));
 		
-		venda1.calcularTotal();	
-		venda2.calcularTotal();
+		try {
+			venda1.calcularTotal();	
+			venda2.calcularTotal();
+		}catch(VendaBuidaException e) {
+			e.printStackTrace();
+		}
 		
-		venda1.getTotalProductes().get(-1);
-
+		try {
+			venda1.getTotalProductes().get(-1);
+		}catch(ArrayIndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }
